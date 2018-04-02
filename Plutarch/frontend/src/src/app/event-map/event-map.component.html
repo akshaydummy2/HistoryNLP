@@ -1,0 +1,33 @@
+<div class="col-12 map-container intricate-border">
+  <agm-map
+    [latitude]="lat"
+    [longitude]="lng"
+    [zoom]="zoom"
+    [disableDefaultUI]="false"
+    [zoomControl]="false"
+    [mapTypeId]="'hybrid'">
+
+    <agm-marker
+      *ngFor="let m of markers; let i = index"
+      (markerClick)="clickedMarker(m.label, i)"
+      [latitude]="m.lat"
+      [longitude]="m.lng"
+      [markerDraggable]="m.draggable"
+      [iconUrl]="m.icon"
+      (dragEnd)="markerDragEnd(m, $event)">
+
+      <agm-info-window>
+        <strong>{{m.label === 'B' ? 'Birth' : 'Death'}}: {{m.description}}</strong>
+      </agm-info-window>
+
+    </agm-marker>
+
+    <!--<agm-circle [latitude]="lat + 0.3" [longitude]="lng"
+                [radius]="5000"
+                [fillColor]="'red'"
+                [circleDraggable]="true"
+                [editable]="true">
+    </agm-circle>-->
+
+  </agm-map>
+</div>

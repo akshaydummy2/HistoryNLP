@@ -1,0 +1,34 @@
+<div class="container-fluid">
+  <!-- Breadcrumbs-->
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a routerLink="/curator/dashboard">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Update Location</li>
+  </ol>
+
+  <div class="row update-topic-location">
+    <div class="col-12" *ngFor="let alert of alerts">
+      <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}</alert>
+    </div>
+    <form class="col-12" #myForm="ngForm" (ngSubmit) = "submitForm(myForm)">
+      <h5>Topic Word - {{ topic.word }}</h5>
+      <div class="form-group inline-block">
+        <label class="control-label mr-3" for="latitude">Lat
+          <input class="form-control validate" [(ngModel)]="topic.location.latitude" id="latitude" name="latitude" type="text">
+        </label>
+        <label class="control-label" for="longitude">Long
+          <input class="form-control validate" [(ngModel)]="topic.location.longitude" id="longitude" name="longitude" type="text">
+        </label>
+      </div>
+      <div class="row mt-2">
+        <div class="col-12">
+          <button class="btn btn-success" type="submit">Submit</button>
+        </div>
+      </div>
+    </form>
+    <div class="row">
+      <label>{{ response }}</label>
+    </div>
+  </div>
+</div>

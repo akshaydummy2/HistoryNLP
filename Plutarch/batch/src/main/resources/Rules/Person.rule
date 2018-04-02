@@ -1,0 +1,13 @@
+// Find PERSON of length 1-4 words
+$PERSON = "( ( [ { ner:PERSON } ] ) ( [ { ner:PERSON } ] ) ( [ { ner:PERSON } ] ) ( [ { ner:PERSON } ] ) | ( [ { ner:PERSON } ] ) ( [ { ner:PERSON } ] ) ( [ { ner:PERSON } ] ) | ( [ { ner:PERSON } ] ) ( [ { ner:PERSON } ] ) | ( [ { ner:PERSON } ] ) )"
+
+{
+  // ruleType is "text", "tokens", "composite", or "filter"
+  ruleType: "tokens",
+
+  // Find any Person
+  pattern: ( $PERSON ),
+
+  // resulting phrase type
+  result: "Person"
+}

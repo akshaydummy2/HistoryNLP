@@ -1,0 +1,19 @@
+// Find PERSON of length 1-4 words
+$PERSON = "( ( [ { ner:PERSON } ] ) ( [ { ner:PERSON } ] ) ( [ { ner:PERSON } ] ) ( [ { ner:PERSON } ] ) | ( [ { ner:PERSON } ] ) ( [ { ner:PERSON } ] ) ( [ { ner:PERSON } ] ) | ( [ { ner:PERSON } ] ) ( [ { ner:PERSON } ] ) | ( [ { ner:PERSON } ] ) )"
+
+// Find DATE of length 1-4 words
+$DATE = "( ( [ { ner:DATE } ] ) ( [ { ner:DATE } ] ) ( [ { ner:DATE } ] ) ( [ { ner:DATE } ] ) | ( [ { ner:DATE } ] ) ( [ { ner:DATE } ] ) ( [ { ner:DATE } ] ) | ( [ { ner:DATE } ] ) ( [ { ner:DATE } ] ) | ( [ { ner:DATE } ] ) )"
+
+// Find any tokens from none to many
+$ANYTOKEN = "[]{0,}?"
+
+{
+  // ruleType is "text", "tokens", "composite", or "filter"
+  ruleType: "tokens",
+
+  // PERSON follow with date range within parenthesis
+  pattern: ( $PERSON $ANYTOKEN /-LRB-/ $ANYTOKEN $DATE []{0,1} $DATE $ANYTOKEN /-RRB-/ ),
+
+  // resulting phrase type
+  result: "Birth_Death"
+}

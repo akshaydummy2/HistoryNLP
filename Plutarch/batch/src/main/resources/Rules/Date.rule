@@ -1,0 +1,12 @@
+// Find DATE of length 1-4 words
+$DATE = "( ( [ { ner:DATE } ] ) ( [ { ner:DATE } ] ) ( [ { ner:DATE } ] ) ( [ { ner:DATE } ] ) | ( [ { ner:DATE } ] ) ( [ { ner:DATE } ] ) ( [ { ner:DATE } ] ) | ( [ { ner:DATE } ] ) ( [ { ner:DATE } ] ) | ( [ { ner:DATE } ] ) )"
+{
+  // ruleType is "text", "tokens", "composite", or "filter"
+  ruleType: "tokens",
+
+  // Find any Date
+  pattern: ( $DATE ),
+
+  // resulting phrase type
+  result: "Date"
+}

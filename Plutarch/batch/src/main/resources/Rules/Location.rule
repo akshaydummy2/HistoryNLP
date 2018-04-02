@@ -1,0 +1,13 @@
+// Find LOCATION of length 1-4 words
+$LOCATION = "( ( [ { ner:LOCATION } ] ) ( [ { ner:LOCATION } ] ) ( [ { ner:LOCATION } ] ) ( [ { ner:LOCATION } ] ) | ( [ { ner:LOCATION } ] ) ( [ { ner:LOCATION } ] ) ( [ { ner:LOCATION } ] ) | ( [ { ner:LOCATION } ] ) ( [ { ner:LOCATION } ] ) | ( [ { ner:LOCATION } ] ) )"
+
+{
+  // ruleType is "text", "tokens", "composite", or "filter"
+  ruleType: "tokens",
+
+  // Find any Location
+  pattern: ( $LOCATION ),
+
+  // resulting phrase type
+  result: "Location"
+}

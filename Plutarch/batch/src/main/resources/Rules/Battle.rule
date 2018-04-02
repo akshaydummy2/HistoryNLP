@@ -1,0 +1,26 @@
+// Find PERSON of length 1-4 words
+$PERSON = "( ( [ { ner:PERSON } ] ) ( [ { ner:PERSON } ] ) ( [ { ner:PERSON } ] ) ( [ { ner:PERSON } ] ) | ( [ { ner:PERSON } ] ) ( [ { ner:PERSON } ] ) ( [ { ner:PERSON } ] ) | ( [ { ner:PERSON } ] ) ( [ { ner:PERSON } ] ) | ( [ { ner:PERSON } ] ) )"
+
+// Find DATE of length 1-4 words
+$DATE = "( ( [ { ner:DATE } ] ) ( [ { ner:DATE } ] ) ( [ { ner:DATE } ] ) ( [ { ner:DATE } ] ) | ( [ { ner:DATE } ] ) ( [ { ner:DATE } ] ) ( [ { ner:DATE } ] ) | ( [ { ner:DATE } ] ) ( [ { ner:DATE } ] ) | ( [ { ner:DATE } ] ) )"
+
+// Find LOCATION of length 1-4 words
+$LOCATION = "( ( [ { ner:LOCATION } ] ) ( [ { ner:LOCATION } ] ) ( [ { ner:LOCATION } ] ) ( [ { ner:LOCATION } ] ) | ( [ { ner:LOCATION } ] ) ( [ { ner:LOCATION } ] ) ( [ { ner:LOCATION } ] ) | ( [ { ner:LOCATION } ] ) ( [ { ner:LOCATION } ] ) | ( [ { ner:LOCATION } ] ) )"
+
+// Find LOCATION of length 1-4 words
+$ORG = "( ( [ { ner:ORGANIZATION } ] ) ( [ { ner:ORGANIZATION } ] ) ( [ { ner:ORGANIZATION } ] ) ( [ { ner:ORGANIZATION } ] ) | ( [ { ner:ORGANIZATION } ] ) ( [ { ner:ORGANIZATION } ] ) ( [ { ner:ORGANIZATION } ] ) | ( [ { ner:ORGANIZATION } ] ) ( [ { ner:ORGANIZATION } ] ) | ( [ { ner:ORGANIZATION } ] ) )"
+
+// Find any tokens from none to many
+$ANYTOKEN = "[]{0,}?"
+
+// battle of, date, location
+{
+  // ruleType is "text", "tokens", "composite", or "filter"
+  ruleType: "tokens",
+
+  // "Battle of" followed with date and location
+  pattern: ( $ANYTOKEN /battle of/ $ANYTOKEN ),
+
+  // resulting phrase type
+  result: "Battle"
+}

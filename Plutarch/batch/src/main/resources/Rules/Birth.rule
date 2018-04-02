@@ -1,0 +1,74 @@
+// Find PERSON of length 1-4 words
+$PERSON = "( ( [ { ner:PERSON } ] ) ( [ { ner:PERSON } ] ) ( [ { ner:PERSON } ] ) ( [ { ner:PERSON } ] ) | ( [ { ner:PERSON } ] ) ( [ { ner:PERSON } ] ) ( [ { ner:PERSON } ] ) | ( [ { ner:PERSON } ] ) ( [ { ner:PERSON } ] ) | ( [ { ner:PERSON } ] ) )"
+
+// Find DATE of length 1-4 words
+$DATE = "( ( [ { ner:DATE } ] ) ( [ { ner:DATE } ] ) ( [ { ner:DATE } ] ) ( [ { ner:DATE } ] ) | ( [ { ner:DATE } ] ) ( [ { ner:DATE } ] ) ( [ { ner:DATE } ] ) | ( [ { ner:DATE } ] ) ( [ { ner:DATE } ] ) | ( [ { ner:DATE } ] ) )"
+
+// Find LOCATION of length 1-4 words
+$LOCATION = "( ( [ { ner:LOCATION } ] ) ( [ { ner:LOCATION } ] ) ( [ { ner:LOCATION } ] ) ( [ { ner:LOCATION } ] ) | ( [ { ner:LOCATION } ] ) ( [ { ner:LOCATION } ] ) ( [ { ner:LOCATION } ] ) | ( [ { ner:LOCATION } ] ) ( [ { ner:LOCATION } ] ) | ( [ { ner:LOCATION } ] ) )"
+
+// Find LOCATION of length 1-4 words
+$ORG = "( ( [ { ner:ORGANIZATION } ] ) ( [ { ner:ORGANIZATION } ] ) ( [ { ner:ORGANIZATION } ] ) ( [ { ner:ORGANIZATION } ] ) | ( [ { ner:ORGANIZATION } ] ) ( [ { ner:ORGANIZATION } ] ) ( [ { ner:ORGANIZATION } ] ) | ( [ { ner:ORGANIZATION } ] ) ( [ { ner:ORGANIZATION } ] ) | ( [ { ner:ORGANIZATION } ] ) )"
+
+// Find any tokens from none to many
+$ANYTOKEN = "[]{0,}?"
+
+// person, birth|born, date, location, org
+{
+  // ruleType is "text", "tokens", "composite", or "filter"
+  ruleType: "tokens",
+
+  // PERSON follow with date range within parenthesis
+  pattern: ( $PERSON $ANYTOKEN /birth|born/ $ANYTOKEN $DATE $ANYTOKEN $LOCATION $ANYTOKEN $ORG ),
+
+  // resulting phrase type
+  result: "Birth"
+}
+
+// person, birth|born, location, date, org
+{
+  // ruleType is "text", "tokens", "composite", or "filter"
+  ruleType: "tokens",
+
+  // PERSON follow with date range within parenthesis
+  pattern: ( $PERSON $ANYTOKEN /birth|born/ $ANYTOKEN $LOCATION $ANYTOKEN $DATE $ANYTOKEN $ORG ),
+
+  // resulting phrase type
+  result: "Birth"
+}
+
+// person, birth|born, date, location
+{
+  // ruleType is "text", "tokens", "composite", or "filter"
+  ruleType: "tokens",
+
+  // PERSON follow with date range within parenthesis
+  pattern: ( $PERSON $ANYTOKEN /birth|born/ $ANYTOKEN $DATE $ANYTOKEN $LOCATION ),
+
+  // resulting phrase type
+  result: "Birth"
+}
+
+// person, birth|born, location, date
+{
+  // ruleType is "text", "tokens", "composite", or "filter"
+  ruleType: "tokens",
+
+  // PERSON follow with date range within parenthesis
+  pattern: ( $PERSON $ANYTOKEN /birth|born/ $ANYTOKEN $LOCATION $ANYTOKEN $DATE ),
+
+  // resulting phrase type
+  result: "Birth"
+}
+
+// person, birth|born, date
+{
+  // ruleType is "text", "tokens", "composite", or "filter"
+  ruleType: "tokens",
+
+  // PERSON follow with date range within parenthesis
+  pattern: ( $PERSON $ANYTOKEN /birth|born/ $ANYTOKEN $DATE ),
+
+  // resulting phrase type
+  result: "Birth"
+}

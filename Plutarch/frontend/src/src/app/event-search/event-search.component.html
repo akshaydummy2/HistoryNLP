@@ -1,0 +1,45 @@
+<div class="container-fluid">
+  <!-- Breadcrumbs-->
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a routerLink="/curator/dashboard">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Event Search</li>
+  </ol>
+
+  <div class="card mb-3">
+    <div class="card-body">
+      <form class="col-12" #myForm="ngForm" (ngSubmit) = "searchEvents()">
+        <input [(ngModel)] = "searchCriteria" id="searchCriteria" name="searchCriteria" type="text" class="validate col-6">
+        <button class="btn waves-effect waves-light blue" type="submit" name="action">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Example DataTables Card-->
+  <div class="card mb-3">
+    <div class="card-header">
+      <i class="fa fa-table"></i> History Events</div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+          <tr>
+            <th>Phrase</th>
+            <th>Date</th>
+            <th>Validity</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let he of searchResults">
+            <td><a [routerLink]="['/curator/event', he.id]">{{he.phrase}}</a></td>
+            <td>{{he.hDate.format}}</td>
+            <td>{{he.validity}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+  </div>
+</div>

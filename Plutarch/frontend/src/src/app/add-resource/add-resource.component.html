@@ -1,0 +1,49 @@
+<div class="container-fluid">
+  <!-- Breadcrumbs-->
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a routerLink="/curator/dashboard">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Add Resource</li>
+  </ol>
+
+  <div class="row add-resource">
+    <div class="col-12" *ngFor="let alert of alerts">
+      <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}</alert>
+    </div>
+    <form class="col-12" #myForm="ngForm" (ngSubmit)="submitForm(myForm)">
+      <div class="form-group">
+        <label class="control-label" for="url">URL</label>
+        <input class="form-control validate" [(ngModel)]="resource.url" id="url" name="url" type="text">
+      </div>
+      <div class="form-group inline-block">
+        <label class="control-label mr-3" for="name">Name
+          <input class="form-control validate" [(ngModel)]="resource.topicName" id="name" name="topicName" type="text">
+        </label>
+        <label class="control-label col-xs-12">Type
+          <div class="form-control btn-group inline-block border-none pl-0" dropdown>
+            <button dropdownToggle type="button" class="btn dropdown-toggle">
+              {{resource?.topicNER ? resource?.topicNER : 'Select Type'}}
+            </button>
+            <ul *dropdownMenu class="dropdown-menu" role="menu">
+              <li (click)="resource.topicNER = 'PERSON'" role="menuitem">
+                <a class="dropdown-item" href="javascript:">Person</a>
+              </li>
+              <li (click)="resource.topicNER = 'LOCATION'" role="menuitem">
+                <a class="dropdown-item" href="javascript:">Location</a>
+              </li>
+            </ul>
+          </div>
+        </label>
+      </div>
+      <div class="row mt-2">
+        <div class="col-12">
+          <button class="btn btn-success" type="submit">Submit</button>
+        </div>
+      </div>
+    </form>
+    <div class="row">
+      <label>{{ resourceMessage }}</label>
+    </div>
+  </div>
+</div>

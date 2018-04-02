@@ -1,0 +1,7 @@
+.map-container {
+  margin-top: 2vh;
+}
+
+agm-map {
+  height: 88vh;
+}

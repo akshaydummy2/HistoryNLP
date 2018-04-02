@@ -1,0 +1,13 @@
+// Find LOCATION of length 1-4 words
+$ORG = "( ( [ { ner:ORGANIZATION } ] ) ( [ { ner:ORGANIZATION } ] ) ( [ { ner:ORGANIZATION } ] ) ( [ { ner:ORGANIZATION } ] ) | ( [ { ner:ORGANIZATION } ] ) ( [ { ner:ORGANIZATION } ] ) ( [ { ner:ORGANIZATION } ] ) | ( [ { ner:ORGANIZATION } ] ) ( [ { ner:ORGANIZATION } ] ) | ( [ { ner:ORGANIZATION } ] ) )"
+
+{
+  // ruleType is "text", "tokens", "composite", or "filter"
+  ruleType: "tokens",
+
+  // Find any Organization
+  pattern: ( $ORG ),
+
+  // resulting phrase type
+  result: "Organization"
+}

@@ -1,0 +1,80 @@
+<div class="container-fluid">
+  <!-- Breadcrumbs-->
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a routerLink="/curator/dashboard">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">History Event</li>
+  </ol>
+
+  <div class="history-event">
+    <div *ngFor="let alert of alerts">
+      <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}</alert>
+    </div>
+    <div class="form-group">
+      <label class="control-label">URL</label>
+      <span class="form-control">{{historyEvent?.resource.url}}</span>
+    </div>
+    <div class="form-group">
+      <label class="control-label">Phrase</label>
+      <span class="form-control phrase col-sm-12 col-md-10 col-lg-6 col-xl-6">{{historyEvent?.phrase}}</span>
+    </div>
+    <div class="form-group">
+      <label class="control-label text-center">
+        Event Type
+        <span class="form-control font-normal">{{historyEvent?.historyEventType}}</span>
+      </label>
+      <label class="control-label text-center ml-5">
+        HDate
+        <span class="form-control font-normal">{{historyEvent?.hDate.formattedDate}}</span>
+      </label>
+      <label class="control-label text-center ml-5">
+        Validity
+        <div class="form-control btn-group inline-block" dropdown>
+          <button dropdownToggle type="button" class="btn dropdown-toggle">
+            {{historyEvent?.validity ? historyEvent?.validity : 'Select Validity'}}
+          </button>
+          <ul *dropdownMenu class="dropdown-menu" role="menu">
+            <li (click)="historyEvent.validity = VALIDITY.Unknown" role="menuitem">
+              <a class="dropdown-item" href="javascript:">{{VALIDITY.Unknown}}</a>
+            </li>
+            <li (click)="historyEvent.validity = VALIDITY.Valid;" role="menuitem">
+              <a class="dropdown-item" href="javascript:">{{VALIDITY.Valid}}</a>
+            </li>
+            <li (click)="historyEvent.validity = VALIDITY.Invalid;" role="menuitem">
+              <a class="dropdown-item" href="javascript:">{{VALIDITY.Invalid}}</a>
+            </li>
+            <li (click)="historyEvent.validity = VALIDITY.Duplicate;" role="menuitem">
+              <a class="dropdown-item" href="javascript:">{{VALIDITY.Duplicate}}</a>
+            </li>
+          </ul>
+        </div>
+      </label>
+    </div>
+
+    <div class="form-group card mb-3">
+      <div class="card-header">
+        <i class="fa fa-table"></i> Topics
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered" width="100%" cellspacing="0">
+            <thead>
+            <tr>
+              <th>Word</th>
+              <th>NER</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let event of historyEvent?.topics">
+              <td>{{event.word}}</td>
+              <td>{{event.ner}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-success" type="submit" (click)="updateEvent()">Update Event</button>
+  </div>
+</div>

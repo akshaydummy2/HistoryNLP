@@ -1,0 +1,25 @@
+.add-resource {
+  margin: 2% 5%;
+}
+
+.form-group .control-label {
+  font-weight: bold;
+}
+
+.border-none {
+  border: none;
+}
+
+.pl-0 {
+  padding-left: 0 !important;
+}
+
+.inline-block {
+  display: inline-block !important;
+}
+
+@media screen and (max-width:768px) {
+  .add-resource {
+    margin: 2%;
+  }
+}

@@ -1,0 +1,61 @@
+<!-- Nav Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+  <a class="navbar-brand" href="/">Plutarch</a>
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarResponsive">
+    <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+        <a class="nav-link" routerLink="/curator/dashboard">
+          <i class="fa fa-fw fa-dashboard"></i>
+          <span class="nav-link-text">Dashboard</span>
+        </a>
+      </li>
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+        <a class="nav-link" routerLink="/curator/eventSearch">
+          <i class="fa fa-fw fa-search"></i>
+          <span class="nav-link-text">Event Search</span>
+        </a>
+      </li>
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseCurator" data-parent="#exampleAccordion">
+          <i class="fa fa-fw fa-book"></i>
+          <span class="nav-link-text">Curator</span>
+        </a>
+        <ul class="sidenav-second-level collapse" id="collapseCurator">
+          <li>
+            <a routerLink="/curator/addResource">Add Resource</a>
+          </li>
+          <li>
+            <a routerLink="/curator/updateTopicLocation">Update Location</a>
+          </li>
+          <li>
+            <a routerLink="/curator/events/unknown">Next Unknown Event</a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseModeling" data-parent="#exampleAccordion">
+          <i class="fa fa-fw fa-language"></i>
+          <span class="nav-link-text">Modeling</span>
+        </a>
+        <ul class="sidenav-second-level collapse" id="collapseModeling">
+          <li>
+            <a routerLink="/curator/namedEntityRecognition">Named Entity Recognition</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <div *ngIf="health" class="circle pull-right" [ngStyle]="{'background-color':health.status === 'UP' ? 'green' : 'red' }"></div>
+  </div>
+</nav>
+
+<div class="mt-5">
+  <router-outlet></router-outlet>
+</div>
+
+<!-- Scroll to Top Button-->
+<!--<a class="scroll-to-top rounded" href="#page-top">
+  <i class="fa fa-angle-up"></i>
+</a>  #TODO: need to fix error-->

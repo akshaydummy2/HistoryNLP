@@ -1,0 +1,12 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+  /*background-image: url("/assets/images/62875372-old-wallpapers.jpg");*/
+}
+
+.intricate-border {
+  border-image-source: url('/assets/images/border-image-lines.png');
+  border-image-slice: calc(50 / 184 * 100%) calc(80 / 284 * 100%) fill;
+  border-image-width: 30px 48px;
+  border-image-outset: 1;
+  padding: 15px;
+}
